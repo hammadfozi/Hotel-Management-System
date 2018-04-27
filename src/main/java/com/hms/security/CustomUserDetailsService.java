@@ -6,6 +6,7 @@ import com.hms.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UserService userService;
 
     @Autowired
-    public CustomUserDetailsService(UserService userService) {
+    public CustomUserDetailsService(@Lazy UserService userService) {
         this.userService = userService;
     }
 

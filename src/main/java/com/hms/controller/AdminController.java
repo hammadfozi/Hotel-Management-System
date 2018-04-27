@@ -7,6 +7,7 @@ import com.hms.model.*;
 import com.hms.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,7 +36,7 @@ public class AdminController {
     private final MessageSource messageSource;
 
     @Autowired
-    public AdminController(UserService userService, RoomService roomService, RoomTypeService roomTypeService, RoomImageService roomImagesService, BookingService bookingService, UserProfileService userProfileService, MessageSource messageSource) {
+    public AdminController(@Lazy UserService userService, RoomService roomService, RoomTypeService roomTypeService, RoomImageService roomImagesService, BookingService bookingService, UserProfileService userProfileService, MessageSource messageSource) {
         this.userService = userService;
         this.roomService = roomService;
         this.roomTypeService = roomTypeService;
