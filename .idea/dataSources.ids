@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - hmo@localhost" uuid="789c0510-47e4-419d-bdb5-ea5bdca1d31a">
+    <database-info product="MySQL" version="5.7.13-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="hmo"/>
+    <table name="app_user" schema="" catalog="hmo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="first_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_APP_USER" table="app_user_user_profile" schema="" catalog="hmo" columns="user_id"/>
+      <exported-key name="FK_ID_APP_USER" table="booking" schema="" catalog="hmo" columns="user_id"/>
+      <index name="sso_id" unique="true" columns="username"/>
+    </table>
+    <table name="app_user_user_profile" schema="" catalog="hmo" type="TABLE">
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="user_profile_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="user_id,user_profile_id"/>
+      <foreign-key name="FK_APP_USER" columns="user_id" ref-table="app_user" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_USER_PROFILE" columns="user_profile_id" ref-table="user_profile" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_USER_PROFILE" unique="false" columns="user_profile_id"/>
+    </table>
+    <table name="booking" schema="" catalog="hmo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="user_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="room_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="room_type_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="people" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="arrival_time" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="departure_time" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="comment" sqlType="VARCHAR" precision="240" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_ID_APP_USER" columns="user_id" ref-table="app_user" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ID_ROOM" columns="room_id" ref-table="room" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ID_ROOM_TYPE" columns="room_type_id" ref-table="room_type" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_ID_APP_USER" unique="false" columns="user_id"/>
+      <index name="FK_ID_ROOM_TYPE" unique="false" columns="room_type_id"/>
+    </table>
+    <table name="persistent_logins" schema="" catalog="hmo" type="TABLE">
+      <column name="username" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="series" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="token" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_used" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="series"/>
+    </table>
+    <table name="room" schema="" catalog="hmo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="capacity" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="description" sqlType="VARCHAR" precision="240" scale="0" nullable="true" jdbcType="12"/>
+      <column name="bath" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="bed" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="internet" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="price" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_ID_ROOM" table="booking" schema="" catalog="hmo" columns="room_id"/>
+      <exported-key name="FK_ID_IMAGE_ROOM" table="room_image" schema="" catalog="hmo" columns="room"/>
+      <exported-key name="FK_ROOM" table="room_room_type" schema="" catalog="hmo" columns="room_id"/>
+    </table>
+    <table name="room_image" schema="" catalog="hmo" type="TABLE">
+      <column name="image_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="room" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="image" sqlType="LONGBLOB" precision="2147483647" scale="0" nullable="false" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="image_id"/>
+      <foreign-key name="FK_ID_IMAGE_ROOM" columns="room" ref-table="room" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_ID_IMAGE_ROOM" unique="false" columns="room"/>
+    </table>
+    <table name="room_room_type" schema="" catalog="hmo" type="TABLE">
+      <column name="room_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="room_type_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="room_id,room_type_id"/>
+      <foreign-key name="FK_ROOM" columns="room_id" ref-table="room" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ROOM_TYPE" columns="room_type_id" ref-table="room_type" ref-schema="" ref-catalog="hmo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_ROOM_TYPE" unique="false" columns="room_type_id"/>
+    </table>
+    <table name="room_type" schema="" catalog="hmo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="base_price" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="type" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_ID_ROOM_TYPE" table="booking" schema="" catalog="hmo" columns="room_type_id"/>
+      <exported-key name="FK_ROOM_TYPE" table="room_room_type" schema="" catalog="hmo" columns="room_type_id"/>
+      <index name="type" unique="true" columns="type"/>
+    </table>
+    <table name="user_profile" schema="" catalog="hmo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="type" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_USER_PROFILE" table="app_user_user_profile" schema="" catalog="hmo" columns="user_profile_id"/>
+      <index name="type" unique="true" columns="type"/>
+    </table>
+  </data-source>
+</component>

@@ -1,0 +1,8 @@
+{
+  "name": "Hyatt",
+  "description": "Hotel management system build on spring boot",
+  "repository": "https://github.com/adilxiqbal/Hotel-Management-System",
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql", "cloudinary" ],
+  "keywords": ["java", "spring", "spring-boot"]
+}
