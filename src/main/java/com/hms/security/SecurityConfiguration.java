@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(86400)
                 .and().csrf().and().exceptionHandling().accessDeniedPage("/errors/Access_Denied")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/home").invalidateHttpSession(true);
+                .clearAuthentication(true).logoutSuccessUrl("/home").invalidateHttpSession(true);
     }
 
     /**
