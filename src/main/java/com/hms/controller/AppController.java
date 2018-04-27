@@ -225,16 +225,16 @@ public class AppController {
     /**
      * This method handles logout requests.
      */
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-            SecurityContextHolder.getContext().setAuthentication(null);
-        }
-        return "redirect:/";
-    }
+//    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+//    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null) {
+//
+//            new SecurityContextLogoutHandler().logout(request, response, auth);
+//            SecurityContextHolder.getContext().setAuthentication(null);
+//        }
+//        return "redirect:/";
+//    }
 
     /**
      * This method returns the principal[user-name] of logged-in user.

@@ -8,9 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="89bfb5a6-6527-4f5b-a6a2-7079042816a1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hms/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hms/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hms/security/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hms/security/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hms/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hms/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hms/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hms/controller/AppController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,10 +68,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hms/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
+            <state relative-caret-position="-1680">
               <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
               <folding>
                 <element signature="docComment;method#setAttributes#0;class#AdminController#0" />
@@ -108,6 +106,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hms/controller/AppController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="223" lean-forward="true" selection-start-line="223" selection-end-line="223" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SecurityConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hms/security/SecurityConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -121,7 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>e.*</find>
       <find>tomcat</find>
       <find>springframework</find>
       <find>springframework.versio</find>
@@ -151,6 +166,7 @@
       <find>jayway</find>
       <find>&lt;img src=</find>
       <find>&lt;img src</find>
+      <find>logout</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,7 +195,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hms/model/RoomType.kt" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a6566dbe-4ef7-471a-9985-aa5976e9cd11/console_3.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/hms/helpers/InputValidatorHelpers.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hms/controller/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hms/controller/CustomerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hms/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hms/repository/RoomTypeRepository.kt" />
@@ -214,8 +229,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/hms/validator/RoomValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hms/validator/BookingValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hms/security/CustomUserDetailsService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/hms/security/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/hms/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hms/security/SecurityConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hms/controller/AppController.java" />
       </list>
     </option>
   </component>
@@ -497,7 +513,7 @@
       <workItem from="1522847328647" duration="45582000" />
       <workItem from="1523236029314" duration="245000" />
       <workItem from="1524806510939" duration="1628000" />
-      <workItem from="1524809580953" duration="149000" />
+      <workItem from="1524809580953" duration="536000" />
     </task>
     <task id="LOCAL-00001" summary="- Updated project base on Spring Boot&#10;- Used spring jpa repositories">
       <created>1521026834655</created>
@@ -611,11 +627,25 @@
       <option name="project" value="LOCAL" />
       <updated>1524806929473</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="- Fixed circular dependancy">
+      <created>1524809757835</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1524809757835</updated>
+    </task>
+    <task id="LOCAL-00018" summary="- Potential logout fix">
+      <created>1524810075754</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1524810075754</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107449000" />
+    <option name="totallyTimeSpent" value="107836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />
@@ -709,7 +739,9 @@
     <MESSAGE value="- added variables in properties" />
     <MESSAGE value="- Implemented cloudinary" />
     <MESSAGE value="- @NonNull added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- @NonNull added" />
+    <MESSAGE value="- Fixed circular dependancy" />
+    <MESSAGE value="- Potential logout fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Potential logout fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -823,13 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hms/controller/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1124,14 +1149,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hms/security/SecurityConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+        <state relative-caret-position="150">
+          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hms/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="-1680">
           <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
           <folding>
             <element signature="docComment;method#setAttributes#0;class#AdminController#0" />
@@ -1162,6 +1187,13 @@
             <element signature="docComment;method#getPrincipal#0;class#AdminController#0" />
             <element signature="method#getPrincipal#0;class#AdminController#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hms/controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="223" lean-forward="true" selection-start-line="223" selection-end-line="223" />
         </state>
       </provider>
     </entry>
