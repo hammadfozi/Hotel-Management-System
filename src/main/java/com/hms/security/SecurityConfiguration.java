@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -51,7 +52,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/login")
                 .usernameParameter("username").passwordParameter("password").and()
                 .rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(86400)
-                .and().csrf().and().exceptionHandling().accessDeniedPage("/errors/Access_Denied");
+                .and().csrf().and().exceptionHandling().accessDeniedPage("/errors/Access_Denied")
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/home").invalidateHttpSession(true);
     }
 
     /**
