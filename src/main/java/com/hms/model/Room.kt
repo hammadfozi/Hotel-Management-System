@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull
 @Entity
 @Table(name = "ROOM")
 @Proxy(lazy = false)
-@JsonIgnoreProperties(ignoreUnknown = true, value = ["bath", "bed", "internet", "status", "booking", "images", "type"])
 class Room : Serializable {
 
     @Id

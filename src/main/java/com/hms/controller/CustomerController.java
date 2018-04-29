@@ -84,7 +84,6 @@ public class CustomerController {
         }
 
         try {
-            // Setting UNVERIFIED User role
             com.hms.model.UserProfile role = userProfileService.findById(Constant.USER_ROLE.VERIFIED);
             Set<com.hms.model.UserProfile> userProfile = new HashSet<>();
             userProfile.add(role);
@@ -95,7 +94,7 @@ public class CustomerController {
             model.addAttribute("loggedinuser", getPrincipal());
 
             //Requesting LOGIN
-            request.login(user.getUsername(), user.getPassword());
+            request.login(user.getEmail(), user.getPassword());
         } catch (ServletException e) {
             e.printStackTrace();
         }

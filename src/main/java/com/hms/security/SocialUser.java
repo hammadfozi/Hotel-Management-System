@@ -10,8 +10,6 @@ import java.util.HashSet;
 
 public class SocialUser implements SocialUserDetails {
 
-    private static final long serialVersionUID = 5197941260523577515L;
-
     private User user;
 
     public SocialUser(User user) {

@@ -1,8 +1,10 @@
 package com.hms.controller;
 
 import com.hms.helpers.Constant;
+import com.hms.model.Feedback;
 import com.hms.model.User;
 import com.hms.model.UserProfile;
+import com.hms.repository.FeedbackRepository;
 import com.hms.service.BookingService;
 import com.hms.service.RoomTypeService;
 import com.hms.service.UserProfileService;
@@ -28,7 +30,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 @SessionAttributes("roles")
@@ -36,6 +40,7 @@ public class AppController {
 
     private final UserService userService;
     private final UserProfileService userProfileService;
+    private final FeedbackRepository feedbackRepository;
     private final RoomTypeService roomTypeService;
     private final BookingService bookingService;
     private final MessageSource messageSource;
@@ -43,7 +48,7 @@ public class AppController {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AppController(UserService userService, UserProfileService userProfileService, RoomTypeService roomTypeService, BookingService bookingService, MessageSource messageSource, AuthenticationTrustResolver authenticationTrustResolver, PasswordEncoder passwordEncoder) {
+    public AppController(UserService userService, UserProfileService userProfileService, RoomTypeService roomTypeService, BookingService bookingService, MessageSource messageSource, AuthenticationTrustResolver authenticationTrustResolver, PasswordEncoder passwordEncoder, FeedbackRepository feedbackRepository) {
         this.userService = userService;
         this.userProfileService = userProfileService;
         this.roomTypeService = roomTypeService;
@@ -51,6 +56,7 @@ public class AppController {
         this.messageSource = messageSource;
         this.authenticationTrustResolver = authenticationTrustResolver;
         this.passwordEncoder = passwordEncoder;
+        this.feedbackRepository = feedbackRepository;
     }
 
     /**
@@ -79,26 +85,6 @@ public class AppController {
         if (email != null && !email.equals("")) user = userService.findByEmail(email);
         if (user == null) return "Available";
         else return "Not Available";
-    }
-
-
-    // ERRORS
-
-    /**
-     * This method handles Access-Denied redirect.
-     * For unauthorized
-     *
-     * @see com.hms.security.SecurityConfiguration for configuring access to links
-     */
-    @RequestMapping(value = "/errors/Access_Denied", method = RequestMethod.GET)
-    public String accessDeniedPage(ModelMap model) {
-        model.addAttribute("loggedinuser", getPrincipal());
-        return "accessDenied";
-    }
-
-    @RequestMapping(value = {"/errors/404"})
-    public String pageNotFound() {
-        return "404";
     }
 
     /**
@@ -204,20 +190,6 @@ public class AppController {
     }
 
     /**
-     * This method handles logout requests.
-     */
-//    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-//    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        if (auth != null) {
-//
-//            new SecurityContextLogoutHandler().logout(request, response, auth);
-//            SecurityContextHolder.getContext().setAuthentication(null);
-//        }
-//        return "redirect:/";
-//    }
-
-    /**
      * This method returns the principal[user-name] of logged-in user.
      */
     private String getPrincipal() {
@@ -258,12 +230,38 @@ public class AppController {
     }
 
 
+    // ERRORS
+
+    /**
+     * This method handles Access-Denied redirect.
+     * For unauthorized
+     *
+     * @link com.hms.security.SecurityConfiguration for configuring access to links
+     */
+    @RequestMapping(value = "/errors/Access_Denied", method = RequestMethod.GET)
+    public String accessDeniedPage(ModelMap model) {
+        model.addAttribute("loggedinuser", getPrincipal());
+        return "accessDenied";
+    }
+
+    @RequestMapping(value = {"/errors/404"})
+    public String pageNotFound() {
+        return "404";
+    }
+
     /**
      * Generic Mapping
      */
     @RequestMapping(value = "/contact")
-    public String contact() {
+    public String contact(ModelMap model) {
+        model.addAttribute("feedback", new Feedback());
         return "contact";
+    }
+
+    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+    public String feedback(@ModelAttribute Feedback feedback) {
+        feedbackRepository.save(feedback);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/about")

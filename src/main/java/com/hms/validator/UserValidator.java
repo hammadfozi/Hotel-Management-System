@@ -23,7 +23,7 @@ public class UserValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "user.name.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "user.name.empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "user.username.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "user.username.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "user.email.empty");
 
         // check for field injection
@@ -36,9 +36,9 @@ public class UserValidator implements Validator {
         if (isHtmlSafe(user.getUsername())) {
             errors.rejectValue("username", "field.notallowed");
         }
-        if (isHtmlSafe(user.getEmail())) {
-            errors.rejectValue("email", "field.notallowed");
-        }
+//        if (isHtmlSafe(user.getEmail())) {
+//            errors.rejectValue("email", "field.notallowed");
+//        }
         if (!user.getEmail().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
             errors.rejectValue("email", "user.email.invalid");
         }

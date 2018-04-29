@@ -1,6 +1,5 @@
 package com.hms.model
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.Proxy
 import org.springframework.format.annotation.DateTimeFormat
 import java.io.Serializable
@@ -10,7 +9,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "BOOKING")
 @Proxy(lazy = false)
-@JsonIgnoreProperties(ignoreUnknown = true, value = ["user", "comment"])
 class Booking : Serializable {
 
     @Id

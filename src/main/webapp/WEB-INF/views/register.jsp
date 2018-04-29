@@ -45,7 +45,7 @@
                 </br>
                 <div>
                     <label for="username" data-icon="e">Your unique customer name</label>
-                    <form:input type="text" onchange="usernameChecker()" path="username" id="username"
+                    <form:input type="text" path="username" id="username"
                                 placeholder="johndoe_199x"
                                 required="required"/>
                 </div>
