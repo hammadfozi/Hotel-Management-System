@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().csrf().and().exceptionHandling().accessDeniedPage("/errors/Access_Denied")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .clearAuthentication(true).logoutSuccessUrl("/home").invalidateHttpSession(true)
-                .and().apply(new SpringSocialConfigurer());
+                .and().apply(new SpringSocialConfigurer().postLoginUrl("/").alwaysUsePostLoginUrl(true));
     }
 
     /**
