@@ -156,27 +156,8 @@ public class AppController {
             n.setFirstName(user.getFirstName());
             n.setLastName(user.getLastName());
             n.setUsername(user.getUsername());
+            n.setEmail(user.getEmail());
 
-            // Properties for Customer only
-            // only customers can update their own email ids
-            if (!(n.getEmail().equals(user.getEmail()))) {
-                n.setEmail(user.getEmail());
-
-                boolean check = false;
-                for (UserProfile profile : n.getUserProfiles())
-                    if (profile.getId().equals(Constant.USER_ROLE.ADMIN) ||
-                            profile.getId().equals(Constant.USER_ROLE.MANAGER))
-                        check = true;
-
-                // only allow for CUSTOMER roles and set them Unverified because of new email
-                if (!check) {
-                    com.hms.model.UserProfile role = userProfileService.findById(Constant.USER_ROLE.UNVERIFIED);
-                    Set<UserProfile> userProfile = new HashSet<>();
-                    userProfile.add(role);
-                    n.setUserProfiles(userProfile);
-                    n.setToken(UUID.randomUUID().toString());
-                }
-            }
             userService.updateUser(n);
             updateCurrentUser(n);
             model.addAttribute("success", "Your profile was updated successfully");

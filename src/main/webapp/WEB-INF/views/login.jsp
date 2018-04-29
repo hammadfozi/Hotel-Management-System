@@ -58,6 +58,12 @@
             </div>
         </div>
     </form>
+
+    <form action="/auth/facebook" method="POST" style="position: absolute; margin-top: 27%; margin-left: 15%">
+        <button type="submit">Sign in with Facebook</button>
+        <input type="hidden" name="scope" value="email,publish_stream,offline_access"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 </section>
 </body>
 </html>

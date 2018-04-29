@@ -17,6 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.social.security.SocialUserDetailsService;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -54,7 +56,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(86400)
                 .and().csrf().and().exceptionHandling().accessDeniedPage("/errors/Access_Denied")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .clearAuthentication(true).logoutSuccessUrl("/home").invalidateHttpSession(true);
+                .clearAuthentication(true).logoutSuccessUrl("/home").invalidateHttpSession(true)
+                .and().apply(new SpringSocialConfigurer());
     }
 
     /**
@@ -78,4 +81,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new AuthenticationPrincipalArgumentResolver();
     }
 
+    @Bean
+    public SocialUserDetailsService socialUsersDetailService() {
+        return new CustomSocialUserDetailsService(userDetailsService);
+    }
 }

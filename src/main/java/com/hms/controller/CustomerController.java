@@ -85,11 +85,10 @@ public class CustomerController {
 
         try {
             // Setting UNVERIFIED User role
-            com.hms.model.UserProfile role = userProfileService.findById(Constant.USER_ROLE.UNVERIFIED);
+            com.hms.model.UserProfile role = userProfileService.findById(Constant.USER_ROLE.VERIFIED);
             Set<com.hms.model.UserProfile> userProfile = new HashSet<>();
             userProfile.add(role);
             user.setUserProfiles(userProfile);
-            user.setToken(UUID.randomUUID().toString());
             userService.saveUser(user);
 
             model.addAttribute("success", "User " + user.getFirstName() + " " + user.getLastName() + " registered successfully");
