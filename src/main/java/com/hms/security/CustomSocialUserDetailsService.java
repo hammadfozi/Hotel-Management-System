@@ -1,5 +1,6 @@
 package com.hms.security;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +12,7 @@ public class CustomSocialUserDetailsService implements SocialUserDetailsService 
 
     private UserDetailsService userDetailsService;
 
-    CustomSocialUserDetailsService(UserDetailsService userDetailsService) {
+    CustomSocialUserDetailsService(@Lazy UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
