@@ -102,6 +102,9 @@
                         <a class="nav-link white-text" data-toggle="tab" href="#bookings" role="tab"> Bookings</a>
                     </li>
                     <li class="nav-item card-block">
+                        <a class="nav-link white-text" data-toggle="tab" href="#images" role="tab"> Images</a>
+                    </li>
+                    <li class="nav-item card-block">
                         <a class="nav-link white-text" data-toggle="tab" href="#admins" role="tab"> Admins</a>
                     </li>
                 </sec:authorize>
@@ -841,6 +844,47 @@
                         </div>
                     </div>
                     <!--/.All Bookings List-->
+
+                    <!-- All Images List-->
+                    <div class="tab-pane fade" id="images" role="tabpanel">
+                        <div class="table-responsive">
+                            <c:choose>
+                                <c:when test="${fn:length(images) > 0}">
+                                    <table class="table table-striped">
+                                        <thead class="thead-inverse">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Room</th>
+                                            <th>Name</th>
+                                            <th>Url</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${images}" var="image">
+                                            <tr>
+                                                <td>${image.id}</td>
+                                                <td>${image.room.name}</td>
+                                                <td>${image.name}</td>
+                                                <td>${image.url}</td>
+                                                <td class="table-actions">
+                                                    <a href="<c:url value='/admin/room/images/delete-${image.id}' />"
+                                                       onclick="return confirm('Are you sure you want to delete this image?')"
+                                                       class="btn material-red btn-sm table-actions-buttons">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </c:when>
+                                <c:otherwise>
+                                    <h4 class="h4-responsive text-muted" style="margin-top: 30px"> No images added
+                                        yet.</h4>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                    <!--/.All Images List-->
                 </sec:authorize>
 
                 <!--Admins List-->

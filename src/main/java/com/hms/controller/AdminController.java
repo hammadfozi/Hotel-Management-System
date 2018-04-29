@@ -68,6 +68,7 @@ public class AdminController {
         model.addAttribute("totaladmins", admins.size());
         model.addAttribute("totalbookings", bookings.size());
         model.addAttribute("totalrooms", rooms.size());
+        model.addAttribute("images", roomImagesService.findAll());
     }
 
     @RequestMapping(value = "/admin")
@@ -303,7 +304,6 @@ public class AdminController {
         // check image attachments
         List<MultipartFile> images = request.getFiles("pictures");
         if (images.size() != 0 && !(images.size() == 1 && images.get(0).getSize() == 0)) {
-            if (r.getImages().size() != 0) deleteRoomImages(room);
             saveImage(room, images);
             r.setImages(room.getImages());
         }
@@ -366,6 +366,29 @@ public class AdminController {
             roomImage.setRoom(room);
             roomImagesService.save(roomImage);
         }
+    }
+
+    @RequestMapping(value = "/admin/room/images/delete-{id}")
+    public String deleteRoomImage(@PathVariable Integer id, RedirectAttributes redirectAttrs) {
+        if (roomImagesService.findById(id) == null) {
+            redirectAttrs.addFlashAttribute("success", "Room with Id " + id + "does not exit.");
+            return "redirect:/admin";
+        }
+
+        List<String> publicIds = new ArrayList<>();
+        publicIds.add(roomImagesService.findById(id).getName());
+
+        final String CLOUDINARY_URL = "cloudinary://758212679231862:MhnrcmQObbrLDfGdQI4T1kVhj8M@hte2zx5qx";
+        Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
+        try {
+            cloudinary.api().deleteResources(publicIds, ObjectUtils.emptyMap());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        roomImagesService.deleteById(id);
+        redirectAttrs.addFlashAttribute("success", "Image No " + id + " was removed successfully.");
+        return "redirect:/admin";
     }
 
     /**
