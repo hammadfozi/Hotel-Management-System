@@ -270,4 +270,9 @@ public class AppController {
     public String about() {
         return "about";
     }
+
+    @RequestMapping(value = "/privacy")
+    public String policy() {
+        return "policy";
+    }
 }
